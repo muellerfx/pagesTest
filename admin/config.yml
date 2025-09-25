@@ -1,8 +1,19 @@
 backend:
-  commit_messages:
-    create: Create {{collection}} “{{slug}}”
-    update: Update {{collection}} “{{slug}}”
-    delete: Delete {{collection}} “{{slug}}”
-    uploadMedia: Upload “{{path}}”
-    deleteMedia: Delete “{{path}}”
-    openAuthoring: '{{message}}'
+  name: git-gateway # or github, gitlab, bitbucket
+  branch: main      # branch to commit changes to
+
+media_folder: "static/images/uploads" # where uploaded images are stored
+public_folder: "/images/uploads"      # path used in frontend
+
+site_url: "https://example.com"       # optional, helps CMS generate correct URLs
+
+collections:
+  - name: "blog"
+    label: "Blog"
+    folder: "content/blog"
+    create: true
+    slug: "{{slug}}" # how filenames are generated
+    fields:
+      - { name: "title", label: "Title", widget: "string" }
+      - { name: "date", label: "Date", widget: "datetime" }
+      - { name: "body", label: "Body", widget: "markdown" }
